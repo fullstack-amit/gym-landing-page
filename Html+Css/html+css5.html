@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dat-76</title>
+         <style>
+
+        .static-box{
+
+            position:static;
+            background: lightblue;
+            padding:   10px;
+        }
+
+        .relative-box{
+
+            position: relative;
+            background: pink;
+            padding: 40px;
+        }
+        
+        .absolute-box{
+
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: yellow;
+            padding: 5px;
+        }
+
+        .fixed-box{
+
+            position: fixed;
+            top: 10px;
+            right:10px;
+            background: orange;
+            padding: 5px;
+        }
+    </style>
+    </head>
+   
+    <body>
+        <h1>static</h1>
+        <div class="static-box">
+            Hello
+        </div>
+
+        <h1>relative</h1>
+        <div class="relative-box">
+            parent
+            <div class="absolute-box">
+                child
+            </div>
+        </div>
+
+        <h1>fixed</h1>
+        <div class="fixed-box">
+            Hello
+        </div>
+    </body>
+</html>

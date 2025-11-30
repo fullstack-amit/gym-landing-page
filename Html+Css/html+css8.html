@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial initial-scale=1.0">
+        <title>Day-78</title>
+        <style>
+            body{
+                background-color: rgb(114, 246, 224);
+                border: 3px solid black;
+                border-radius: 20px;
+                padding: 10px;
+                margin: 5px;
+                text-align: center;
+                display: grid;
+                grid-template-areas:
+                "header header"
+                "nav main"
+                "footer footer";
+                grid-template-columns: 200px 1fr;
+                grid-template-rows: 70px 1fr 50px;
+                height: 100vh;
+               }
+            header   { grid-area: header; background: #27296d; color: white; text-align:center; }
+            nav{ grid-area: nav; background: #a393eb; padding: 1em; }
+            main     { grid-area: main; background: #f5c7f7; padding: 1em; }
+            aside    { display:none; }  /* optional later */
+            footer   { grid-area: footer; background: #27296d; color:white; text-align:center; }
+            .card-container{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                padding: 20px;
+            }
+            .card{
+                border: 2px solid black;
+                width: 300px;
+                padding: 10px;
+                margin: 3px;
+                text-align: center;
+            }
+
+            button:hover{
+                background-color: blue;
+                cursor: pointer;
+                box-shadow:  0 4px 8px rgba(149, 34, 221, 0.2);
+            }
+        </style>
+    </head>
+    <body>
+        <header>Header</header>
+        <nav>Navigation</nav>
+        <main>Main Content
+            <div class="card-container">
+                <div class="card">
+                    <h2>Card 1</h2>
+                    <p>Ye pehla card hai</p>
+                    <button>Click Me</button>
+                </div>
+                <div class="card">
+                    <h2>Card 2</h2>
+                    <p>Ye doosra card hai</p>
+                    <button>Click Me</button>
+                </div>
+                <div class="card">
+                    <h2>Card 3</h2>
+                    <p>Ye teesra card hai</p>
+                    <button>Click Me</button>
+                </div>
+            </div>
+        </main>
+        <aside>Sidebar</aside>
+        <footer>Footer</footer>
+    </body>
+</html>

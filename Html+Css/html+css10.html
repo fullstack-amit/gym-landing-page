@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between; /* logo left, links right */
+            align-items: center; /* vertically center */
+            padding: 10px 30px;
+            background-color: #222;
+            color: white;
+        }
+
+        .links a {
+           color: white;
+           text-decoration: none;
+           margin-left: 20px;
+           font-weight: 500;
+        }
+        .links a:hover {
+          color: #00bfff; /* hover effect */
+        }
+
+        .links a img {
+        transition: 0.3s ease; /* smooth animation */
+        }
+        .links a:hover img {
+        transform: scale(1.1);
+        filter: brightness(1.5);
+        box-shadow: 0 0 15px #00bfff;
+        animation: pulse 0.6s ease-out;
+        }
+
+       @keyframes pulse {
+       0% {
+       transform: scale(1);
+       box-shadow: 0 0 0 #00bfff;
+      }
+      50% {
+      transform: scale(1.15);
+      box-shadow: 0 0 20px #00bfff;
+      }
+      100% {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #00bfff;
+      }
+      }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">MyLogo</div>
+        <div class="links">
+            <a href="#"><img src="https://static.vecteezy.com/system/resources/previews/000/568/450/original/home-icon-vector.jpg" alt="home" width="30"></a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
+</body>
+</html>

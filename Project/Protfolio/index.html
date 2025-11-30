@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amit Mondal - Python & Web Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: transform 0.4s ease;
+            border: 5px solid #667eea;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.08) rotate(3deg);
+        }
+
+        h1 {
+            font-size: 46px;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .bio {
+            color: #555;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #667eea;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 20px;
+        }
+
+        .social-links a:hover {
+            background: #764ba2;
+            transform: translateY(-5px);
+        }
+
+        .section {
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 12px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .skill {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 22px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .skill:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .about-box {
+            background: #f8f9fa;
+            padding: 28px;
+            border-radius: 14px;
+            border-left: 5px solid #667eea;
+            color: #555;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .project {
+            background: #f8f9fa;
+            padding: 28px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+            transition: all 0.4s;
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .project:hover {
+            transform: translateX(12px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.25);
+        }
+
+        .project-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-content h3 {
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .project-content p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #764ba2;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 35px;
+            border-radius: 14px;
+            color: white;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
+
+        .contact-info p {
+            margin: 12px 0;
+            font-size: 17px;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .contact-info a:hover {
+            opacity: 0.8;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        footer p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        footer .social-links {
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+                margin: 0 auto;
+            }
+
+            .container {
+                padding: 35px 25px;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+
+            .subtitle {
+                font-size: 20px;
+            }
+
+            .project {
+                grid-template-columns: 1fr;
+            }
+
+            .project-image {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="hamburger" onclick="toggleMenu()"> <span></span> <span></span> <span></span> </div>
+        <ul id="navMenu">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container" id="home">
+        <div class="hero"> <img src="amit-mondal-profile.jpg" alt="Amit Mondal" class="profile-pic">
+            <h1>Amit Mondal</h1>
+            <p class="subtitle">Python Backend Learner | Web Developer</p>
+            <p class="bio"> I'm a Python developer focused on building clean, functional, and efficient web
+                applications. I enjoy writing maintainable code, improving every day, and working on real-world projects
+                that sharpen my skills and mindset. </p>
+            <div class="social-links"> <a href="https://linkedin.com/in/yourprofile" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i> </a> <a href="https://github.com/yourprofile" target="_blank"
+                    title="GitHub"> <i class="fab fa-github"></i> </a> <a href="mailto:mamit2666@gmail.com"
+                    title="Email"> <i class="fas fa-envelope"></i> </a> </div>
+        </div>
+        <div class="section" id="about">
+            <h2>About Me</h2>
+            <div class="about-box">
+                <p> Currently working in the hospitality field while building my career in tech. I believe in consistent
+                    learning and applying knowledge through hands-on projects. My focus is on Python development and
+                    creating responsive web interfaces. </p>
+            </div>
+        </div>
+        <div class="section" id="skills">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill">Python</div>
+                <div class="skill">HTML5</div>
+                <div class="skill">CSS3</div>
+                <div class="skill">Git</div>
+                <div class="skill">Problem Solving</div>
+                <div class="skill">Discipline</div>
+            </div>
+        </div>
+        <div class="section" id="projects">
+            <h2>Projects</h2>
+            <div class="project"> <img src="https://via.placeholder.com/120x120/667eea/ffffff?text=Calculator"
+                    alt="Calculator App" class="project-image">
+                <div class="project-content">
+                    <h3>Calculator App</h3>
+                    <p>A Python-based calculator supporting basic arithmetic operations with a clean user interface.</p>
+                    <div class="project-links"> <a href="https://github.com/yourprofile/calculator" class="btn"
+                            target="_blank">View Code</a> </div>
+                </div>
+            </div>
+            <div class="project"> <img src="https://via.placeholder.com/120x120/764ba2/ffffff?text=To-Do"
+                    alt="To-Do App" class="project-image">
+                <div class="project-content">
+                    <h3>To-Do List App</h3>
+                    <p>A console-based task manager built using Python functions and file handling to manage daily
+                        tasks.</p>
+                    <div class="project-links"> <a href="https://github.com/yourprofile/todo" class="btn"
+                            target="_blank">View Code</a> </div>
+                </div>
+            </div>
+            <div class="project"> <img src="https://via.placeholder.com/120x120/667eea/ffffff?text=Portfolio"
+                    alt="Portfolio" class="project-image">
+                <div class="project-content">
+                    <h3>Portfolio Website</h3>
+                    <p>A responsive personal portfolio created using HTML5 & CSS3, showcasing professional skills and
+                        projects.</p>
+                    <div class="project-links"> <a href="https://github.com/yourprofile/portfolio" class="btn"
+                            target="_blank">View Code</a> <a href="#" class="btn">Live Demo</a> </div>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="contact">
+            <h2>Contact Me</h2>
+            <div class="contact-info">
+                <h3>Let's Work Together!</h3>
+                <p>📧 Email: <a href="mailto:mamit2666@gmail.com">mamit2666@gmail.com</a></p>
+                <p>📱 Phone: <a href="tel:+918327645794">+91 8327645794</a></p>
+                <p>📍 Location: West Bengal, India</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 Amit Mondal. All Rights Reserved.</p>
+        <p>Built with ❤️ and Code</p>
+        <div class="social-links"> <a href="https://linkedin.com/in/yourprofile" target="_blank"><i
+                    class="fab fa-linkedin-in"></i></a> <a href="https://github.com/yourprofile" target="_blank"><i
+                    class="fab fa-github"></i></a> <a href="mailto:mamit2666@gmail.com"><i
+                    class="fas fa-envelope"></i></a> </div>
+    </footer>
+    <script> function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); } document.querySelectorAll('nav a').forEach(link => { link.addEventListener('click', function () { document.querySelectorAll('nav a').forEach(a => a.classList.remove('active')); this.classList.add('active'); document.getElementById('navMenu').classList.remove('active'); }); }); </script>
+</body>
+
+</html>

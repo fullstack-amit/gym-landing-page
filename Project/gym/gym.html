@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PowerFit Gym - Kolkata</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header / Navigation */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        nav h1 {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        nav a[href="#join"] {
+            background: #ff6b35;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255,107,53,0.3);
+            transition: all 0.3s;
+        }
+
+        nav a[href="#join"]:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        #home {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+            padding: 0 2rem;
+        }
+
+        #home h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        #home p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        #home button {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(255,107,53,0.4);
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        #home button:hover {
+            background: #e55a2b;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255,107,53,0.6);
+        }
+
+        /* Sections Common Styling */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e3c72;
+        }
+
+        /* Services / 3 Boxes */
+        #classes > div {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        #classes > div > div {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        #classes > div > div:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        #classes h3 {
+            color: #ff6b35;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Pricing Plans */
+        #pricing > div {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        #pricing > div > div {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #pricing p:first-of-type {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        #pricing button {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        #pricing button:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+        }
+
+        /* Timetable - OVERFLOW */
+        #schedule {
+            overflow-x: auto;
+        }
+
+        #schedule table {
+            width: 100%;
+            min-width: 600px; /* Minimum width for proper display */
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        #schedule th, #schedule td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        #schedule th {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Trainers */
+        #trainers > div {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        #trainers img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+
+        /* Form Styling */
+        #join form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        #join label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+
+        #join input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        #join input:focus {
+            outline: none;
+            border-color: #ff6b35;
+        }
+
+        /* Testimonials */
+        section:has(article) article {
+            background: white;
+            padding: 2rem;
+            margin: 1rem auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 600px;
+        }
+
+        /* Why Choose Us */
+        #why-us ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        #why-us li {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #ccc;
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+        }
+
+        footer a {
+            color: #ff6b35;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            #home h2 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* 480px Breakpoint */
+        @media (max-width: 480px) {
+            #home h2 {
+                font-size: 2rem;
+            }
+
+            nav a[href="#join"] {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            #classes > div > div {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <nav>
+            <h1>PowerFit Gym</h1>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#classes">Classes</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#join">JOIN NOW</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <h2>Achieve Your Dream Body Today</h2>
+        <p>Join our premium fitness community and start your transformation journey</p>
+        <button>🎯 FREE TRIAL!</button>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <h2>About PowerFit Gym</h2>
+        <p>PowerFit Gym Kolkata mein 2018 se premium fitness services de raha hai. Humare pass modern machines, experienced trainers aur ek supportive community hai jo aapke fitness journey ko asaan banati hai.</p>
+        <p>Hum sabhi age groups aur fitness levels ke liye classes provide karte hain — beginners se lekar advanced tak.</p>
+    </section>
+
+    <!-- Services / Classes Section -->
+    <section id="classes">
+        <h2>Our Classes</h2>
+        <div>
+            <div>
+                <h3>💨 Cardio</h3>
+                <p>High-energy cardio sessions for maximum fat loss and stamina building.</p>
+            </div>
+            <div>
+                <h3>🏋️ Weight Training</h3>
+                <p>Strength and muscle building programs with professional guidance.</p>
+            </div>
+            <div>
+                <h3>🧘 Yoga</h3>
+                <p>Flexibility, balance, and mental peace through guided yoga sessions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing / Membership Plans -->
+    <section id="pricing">
+        <h2>Choose Your Plan</h2>
+        <div>
+            <div>
+                <h3>Basic</h3>
+                <p>₹999<span>/month</span></p>
+                <p>Gym access + Cardio + Weights</p>
+                <button>Join Basic</button>
+            </div>
+            <div>
+                <h3>Standard</h3>
+                <p>₹1499<span>/month</span></p>
+                <p>All Basic + Group Classes</p>
+                <button>Join Standard</button>
+            </div>
+            <div>
+                <h3>Premium</h3>
+                <p>₹2499<span>/month</span></p>
+                <p>Everything + Personal Trainer</p>
+                <button>Join Premium</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timetable -->
+    <section id="schedule">
+        <h2>Weekly Class Schedule</h2>
+        <table>
+            <tr>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Class</th>
+                <th>Trainer</th>
+            </tr>
+            <tr>
+                <td>Monday</td>
+                <td>6:00 AM - 7:00 AM</td>
+                <td>Cardio Blast</td>
+                <td>Raj</td>
+            </tr>
+            <tr>
+                <td>Monday</td>
+                <td>7:00 PM - 8:00 PM</td>
+                <td>Weight Training</td>
+                <td>Vikas</td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td>6:00 AM - 7:00 AM</td>
+                <td>Yoga & Stretch</td>
+                <td>Priya</td>
+            </tr>
+            <tr>
+                <td>Saturday</td>
+                <td>8:00 AM - 9:00 AM</td>
+                <td>Power Lifting</td>
+                <td>Vikas</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Trainers -->
+    <section id="trainers">
+        <h2>Meet Our Trainers</h2>
+        <div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500" alt="Raj - Strength Coach">
+                <h3>Raj Verma</h3>
+                <p>Strength & Conditioning Coach<br>5+ years experience</p>
+            </div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500" alt="Priya - Yoga Coach">
+                <h3>Priya Das</h3>
+                <p>Certified Yoga Instructor<br>Mind-body specialist</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="join">
+        <h2>Book Your Free Trial</h2>
+        <form>
+            <label>Full Name:</label>
+            <input type="text" name="name" placeholder="Enter your full name" required>
+            <label>Phone Number:</label>
+            <input type="tel" name="phone" placeholder="1234567890" required>
+            <label>Email:</label>
+            <input type="email" name="email" placeholder="your@email.com">
+            <label>Preferred Time:</label>
+            <input type="text" name="time" placeholder="Morning / Evening">
+            <button type="submit">🚀 Request Free Trial</button>
+        </form>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us">
+        <h2>Why Choose PowerFit?</h2>
+        <ul>
+            <li>✅ Certified & experienced trainers</li>
+            <li>✅ Clean & safe workout environment</li>
+            <li>✅ Flexible timings for professionals</li>
+            <li>✅ Beginner-friendly programs</li>
+        </ul>
+    </section>
+
+    <!-- Testimonials -->
+    <section>
+        <h2>What Our Members Say</h2>
+        <article>
+            <p>"Sirf 3 mahine mein amazing results mile, trainers bahut supportive hain. Best gym in Kolkata!"</p>
+            <cite>- Rahul Sharma, 26</cite>
+        </article>
+        <article>
+            <p>"Clean gym, modern machines aur friendly environment. Highly recommended for beginners!"</p>
+            <cite>- Priya Roy, 30</cite>
+        </article>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>© 2025 PowerFit Gym. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
+        <p>PowerFit Gym, Kolkata | 📞 +91-8327645794</p>
+        <p>
+            Follow us: 
+            <a href="https://www.linkedin.com/in/amit-mondal-a60b961a1" target="_blank">📸 LinkedIn</a>
+        </p>
+    </footer>
+
+</body>
+</html>
